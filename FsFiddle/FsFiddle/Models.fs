@@ -7,9 +7,10 @@ type Request =
 
 type Response =
     { Code: int
+      MimeType: string
       Header: Map<string, string>
       Body: Lazy<string> }
-    static member Default = { Code = 200; Header = Map.empty; Body = lazy("") }
+    static member Default = { Code = 200; MimeType = "text/plain"; Header = Map.empty; Body = lazy("") }
 
 type Capture =
     { Url: string

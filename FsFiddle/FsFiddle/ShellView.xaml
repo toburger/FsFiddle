@@ -40,6 +40,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="MIME Type"
+                                        Binding="{Binding Response.MimeType}" />
                     <DataGridTemplateColumn Header="URL"
                                             Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
@@ -117,7 +119,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <TextBox Grid.Row="2"
+                        <TextBox Grid.Row="1"
                                  IsReadOnly="True"
                                  ScrollViewer.CanContentScroll="True"
                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"

@@ -26,6 +26,7 @@ let afterSessionComplete (session: Session) =
           Request = { Header = requestHeaders
                       Body = requestBody }
           Response = { Code = responseCode
+                       MimeType = session.oResponse.MIMEType
                        Header = responseHeaders
                        Body = responseBody } }
         |> captures.Trigger
