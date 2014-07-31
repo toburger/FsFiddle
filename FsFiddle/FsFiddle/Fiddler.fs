@@ -32,8 +32,10 @@ let afterSessionComplete (session: Session) =
     
 let afterSessionCompleteHandler = SessionStateHandler(afterSessionComplete)
 
+let tracefn fmt = Printf.kprintf System.Diagnostics.Trace.WriteLine fmt
+
 let log = EventHandler<LogEventArgs>(fun _ l ->
-    System.Diagnostics.Debug.WriteLine("FIDDLER: " + l.LogString))
+    tracefn "FIDDLER: %s" l.LogString)
 
 let isCapturing() = FiddlerApplication.IsStarted()
 
