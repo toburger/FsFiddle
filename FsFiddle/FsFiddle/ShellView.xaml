@@ -1,0 +1,105 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:conv="clr-namespace:Converters;assembly=FsFiddle"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="400"
+             d:DesignHeight="400">
+    <UserControl.Resources>
+        <conv:MapConverter x:Key="MapConverter" />
+        <conv:MapConverter2 x:Key="MapConverter2" />
+        <conv:LazyConverter x:Key="LazyConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Style="{DynamicResource SquareButtonStyle}"
+                    Content="Start capturing">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="StartCapturing" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            <Button Style="{DynamicResource SquareButtonStyle}"
+                    Content="Stop capturing">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="StopCapturing" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <DataGrid AutoGenerateColumns="False"
+                      ItemsSource="{Binding Captures}"
+                      SelectedItem="{Binding SelectedCapture}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="URL"
+                                        Binding="{Binding Url}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <GridSplitter Grid.Column="1"
+                          ResizeDirection="Columns"
+                          ResizeBehavior="PreviousAndNext"
+                          Width="8" />
+            <Grid Grid.Column="2"
+                  DataContext="{Binding SelectedCapture}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Text="{Binding Url}" />
+                <Separator Grid.Row="1" />
+                <TextBlock Grid.Row="2"
+                           Text="{Binding Request.Header, Converter={StaticResource MapConverter}}">
+                    <TextBlock.ToolTip>
+                        <ToolTip>
+                            <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
+                        </ToolTip>
+                    </TextBlock.ToolTip>
+                </TextBlock>
+                <TextBox Grid.Row="3"
+                         ScrollViewer.CanContentScroll="True"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         IsReadOnly="True"
+                         Text="{Binding Request.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
+                <GridSplitter Grid.Row="4"
+                              ResizeDirection="Rows"
+                              ResizeBehavior="PreviousAndNext"
+                              Height="8" />
+                <TextBlock Grid.Row="5"
+                           Text="{Binding Response.Header, Converter={StaticResource MapConverter}}">
+                    <TextBlock.ToolTip>
+                        <ToolTip>
+                            <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
+                        </ToolTip>
+                    </TextBlock.ToolTip></TextBlock>
+                <TextBox Grid.Row="6"
+                         ScrollViewer.CanContentScroll="True"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         IsReadOnly="True"
+                         Text="{Binding Response.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
