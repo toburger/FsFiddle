@@ -36,9 +36,9 @@ let afterSessionComplete (session: Session) =
         let responseHeaders = session.oResponse.headers |> toMap
         let responseBody =
             match session.oResponse.MIMEType with
-            | IsImage -> lazy (Image session.responseBodyBytes)
-            | IsVideo -> lazy (Video session.responseBodyBytes)
-            | IsText -> lazy (Text (session.GetResponseBodyAsString()))
+            | IsImage -> Image (lazy session.responseBodyBytes)
+            | IsVideo -> Video (lazy session.responseBodyBytes)
+            | IsText -> (Text (lazy session.GetResponseBodyAsString()))
         { Url = url
           Request = { Header = requestHeaders
                       Body = requestBody }

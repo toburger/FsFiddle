@@ -6,16 +6,16 @@ type Request =
     static member Default = { Header = Map.empty; Body = lazy("") }
 
 type ResponseBody =
-    | Text of string
-    | Image of byte[]
-    | Video of byte[]
+    | Text of Lazy<string>
+    | Image of Lazy<byte[]>
+    | Video of Lazy<byte[]>
 
 type Response =
     { Code: int
       MimeType: string
       Header: Map<string, string>
-      Body: Lazy<ResponseBody> }
-    static member Default = { Code = 200; MimeType = "text/plain"; Header = Map.empty; Body = lazy(Text "") }
+      Body: ResponseBody }
+    static member Default = { Code = 200; MimeType = "text/plain"; Header = Map.empty; Body = Text (lazy("")) }
 
 type Capture =
     { Url: string

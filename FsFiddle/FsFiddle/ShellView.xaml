@@ -13,6 +13,7 @@
         <conv:MapConverter x:Key="MapConverter" />
         <conv:LazyTextConverter x:Key="LazyTextConverter" />
         <conv:LazyBinaryConverter x:Key="LazyBinaryConverter" />
+        <conv:VisibiltyConverter x:Key="VisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -136,16 +137,16 @@
 
                     <Grid Grid.Row="2">
                         <TextBox IsReadOnly="True"
-                                 Visibility="{Binding Response.Body.IsText}"
+                                 Visibility="{Binding Response.Body.IsText, Converter={StaticResource VisibilityConverter}}"
                                  ScrollViewer.CanContentScroll="True"
                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                  Text="{Binding Response.Body, Converter={StaticResource LazyTextConverter}, Mode=OneWay}" />
-                        <Image Visibility="{Binding Response.Body.IsImage}"
+                        <Image Visibility="{Binding Response.Body.IsImage, Converter={StaticResource VisibilityConverter}}"
                                Source="{Binding Response.Body, Converter={StaticResource LazyBinaryConverter}}"
                                StretchDirection="DownOnly" />
                         <MediaElement Source="{Binding Response.Body, Converter={StaticResource LazyBinaryConverter}}"
-                                      Visibility="{Binding Response.Body.IsVideo}" />
+                                      Visibility="{Binding Response.Body.IsVideo, Converter={StaticResource VisibilityConverter}}" />
                     </Grid>
                 </Grid>
             </Grid>
