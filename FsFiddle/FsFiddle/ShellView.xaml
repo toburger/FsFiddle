@@ -11,7 +11,8 @@
              d:DesignHeight="400">
     <UserControl.Resources>
         <conv:MapConverter x:Key="MapConverter" />
-        <conv:LazyConverter x:Key="LazyConverter" />
+        <conv:LazyTextConverter x:Key="LazyTextConverter" />
+        <conv:LazyBinaryConverter x:Key="LazyBinaryConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -100,7 +101,7 @@
                              ScrollViewer.CanContentScroll="True"
                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"
-                             Text="{Binding Request.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
+                             Text="{Binding Request.Body, Converter={StaticResource LazyTextConverter}, Mode=OneWay}" />
                 </Grid>
                 <GridSplitter Grid.Row="3"
                               ResizeDirection="Auto"
@@ -132,12 +133,22 @@
                                   HorizontalAlignment="Stretch"
                                   ResizeBehavior="PreviousAndNext"
                                   Height="3" />
-                    <TextBox Grid.Row="2"
-                             IsReadOnly="True"
-                             ScrollViewer.CanContentScroll="True"
-                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                             Text="{Binding Response.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
+                    <TabControl Grid.Row="2">
+                        <TabItem Header="Text">
+                            <TextBox IsReadOnly="True"
+                                     ScrollViewer.CanContentScroll="True"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     Text="{Binding Response.Body, Converter={StaticResource LazyTextConverter}, Mode=OneWay}" />
+                        </TabItem>
+                        <TabItem Header="Image">
+                            <Image Source="{Binding Response.Body, Converter={StaticResource LazyBinaryConverter}}"
+                                   StretchDirection="DownOnly"/>
+                        </TabItem>
+                        <TabItem Header="Video">
+                            <MediaElement Source="{Binding Response.Body, Converter={StaticResource LazyBinaryConverter}}" />
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </Grid>
         </Grid>
