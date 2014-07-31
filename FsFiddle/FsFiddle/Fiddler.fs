@@ -13,8 +13,15 @@ let toMap (hdrs: seq<HTTPHeaderItem>) =
     |> Map.ofSeq
 
 let afterSessionComplete (session: Session) =
-    if session.RequestMethod = "CONNECT" then ()
     if session = null || session.oRequest = null || session.oRequest.headers = null then ()
+    // ignore CONNECT
+    if session.RequestMethod = "CONNECT" then ()
+    // ignore SSL
+    if session.isHTTPS then ()
+    // ignore missing MIME type
+    if String.IsNullOrEmpty(session.oResponse.MIMEType) then ()
+    // ignore redirections
+    if session.responseCode >= 300 && session.responseCode < 400 then ()
     else
         let url = session.fullUrl
         let requestHeaders = session.oRequest.headers |> toMap
@@ -44,7 +51,7 @@ let startCapturing() =
     FiddlerApplication.Log.OnLogString.AddHandler(log)
     FiddlerApplication.add_AfterSessionComplete(afterSessionCompleteHandler)
     FiddlerApplication.Startup(8888, bRegisterAsSystemProxy = true,
-                               bDecryptSSL = true, bAllowRemote = false)
+                               bDecryptSSL = false, bAllowRemote = false)
 
 let stopCapturing() =
     FiddlerApplication.Log.OnLogString.RemoveHandler(log)
