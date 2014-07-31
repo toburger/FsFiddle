@@ -145,9 +145,9 @@
                         <Image Visibility="{Binding Response.Body.IsImage, Converter={StaticResource VisibilityConverter}}"
                                Source="{Binding Response.Body, Converter={StaticResource LazyBinaryConverter}}"
                                StretchDirection="DownOnly" />
-                        <MediaElement Source="{Binding Url}"
+                        <!--<MediaElement Source="{Binding Response.Body, Converter={StaticResource LazyBinaryConverter}}"
                                       LoadedBehavior="Play"
-                                      Visibility="{Binding Response.Body.IsVideo, Converter={StaticResource VisibilityConverter}}" />
+                                      Visibility="{Binding Response.Body.IsVideo, Converter={StaticResource VisibilityConverter}}" />-->
                     </Grid>
                 </Grid>
             </Grid>
