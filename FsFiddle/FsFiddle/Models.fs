@@ -6,9 +6,10 @@ type Request =
     static member Default = { Header = Map.empty; Body = lazy("") }
 
 type Response =
-    { Header: Map<string, string>
+    { Code: int
+      Header: Map<string, string>
       Body: Lazy<string> }
-    static member Default = { Header = Map.empty; Body = lazy("") }
+    static member Default = { Code = 200; Header = Map.empty; Body = lazy("") }
 
 type Capture =
     { Url: string

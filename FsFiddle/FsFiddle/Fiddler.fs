@@ -19,13 +19,15 @@ let afterSessionComplete (session: Session) =
         let url = session.fullUrl
         let requestHeaders = session.oRequest.headers |> toMap
         let requestBody = lazy (session.GetRequestBodyAsString())
+        let responseCode = session.responseCode
         let responseHeaders = session.oResponse.headers |> toMap
         let responseBody = lazy (session.GetResponseBodyAsString())
         { Url = url
-          Request = { Request.Header = requestHeaders
-                      Request.Body = requestBody }
-          Response = { Response.Header = responseHeaders
-                       Response.Body = responseBody } }
+          Request = { Header = requestHeaders
+                      Body = requestBody }
+          Response = { Code = responseCode
+                       Header = responseHeaders
+                       Body = responseBody } }
         |> captures.Trigger
     
 let afterSessionCompleteHandler = SessionStateHandler(afterSessionComplete)
