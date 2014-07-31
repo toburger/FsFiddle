@@ -46,7 +46,7 @@
             <GridSplitter Grid.Column="1"
                           ResizeDirection="Columns"
                           ResizeBehavior="PreviousAndNext"
-                          Width="8" />
+                          Width="6" />
             <Grid Grid.Column="2"
                   DataContext="{Binding SelectedCapture}">
                 <Grid.RowDefinitions>
@@ -59,7 +59,6 @@
                 <TextBlock Grid.Row="0"
                            Text="{Binding Url}" />
                 <Separator Grid.Row="1" />
-
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -81,9 +80,10 @@
                              Text="{Binding Request.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
                 </Grid>
                 <GridSplitter Grid.Row="3"
-                              ResizeDirection="Rows"
+                              ResizeDirection="Auto"
+                              HorizontalAlignment="Stretch"
                               ResizeBehavior="PreviousAndNext"
-                              Height="8" />
+                              Height="3" />
                 <Grid Grid.Row="4">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
