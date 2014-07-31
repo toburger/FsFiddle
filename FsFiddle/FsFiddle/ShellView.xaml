@@ -52,46 +52,66 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Text="{Binding Url}" />
                 <Separator Grid.Row="1" />
-                <TextBlock Grid.Row="2"
-                           Text="{Binding Request.Header, Converter={StaticResource MapConverter}}">
-                    <TextBlock.ToolTip>
-                        <ToolTip>
-                            <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
-                        </ToolTip>
-                    </TextBlock.ToolTip>
-                </TextBlock>
-                <TextBox Grid.Row="3"
-                         ScrollViewer.CanContentScroll="True"
-                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         IsReadOnly="True"
-                         Text="{Binding Request.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
-                <GridSplitter Grid.Row="4"
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="{Binding Request.Header, Converter={StaticResource MapConverter}}">
+                        <TextBlock.ToolTip>
+                            <ToolTip>
+                                <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
+                            </ToolTip>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <TextBox Grid.Row="1"
+                             ScrollViewer.CanContentScroll="True"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             IsReadOnly="True"
+                             Text="{Binding Request.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
+                </Grid>
+                <GridSplitter Grid.Row="3"
                               ResizeDirection="Rows"
                               ResizeBehavior="PreviousAndNext"
                               Height="8" />
-                <TextBlock Grid.Row="5"
-                           Text="{Binding Response.Header, Converter={StaticResource MapConverter}}">
-                    <TextBlock.ToolTip>
-                        <ToolTip>
-                            <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
-                        </ToolTip>
-                    </TextBlock.ToolTip></TextBlock>
-                <TextBox Grid.Row="6"
-                         ScrollViewer.CanContentScroll="True"
-                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                         IsReadOnly="True"
-                         Text="{Binding Response.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Response.Code, StringFormat='\{0\} | '}" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Response.Header, Converter={StaticResource MapConverter}}">
+                            <TextBlock.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
+                                </ToolTip>
+                            </TextBlock.ToolTip>
+                    </TextBlock>
+                    </Grid>
+                    <TextBox Grid.Row="1"
+                             ScrollViewer.CanContentScroll="True"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             IsReadOnly="True"
+                             Text="{Binding Response.Body, Converter={StaticResource LazyConverter}, Mode=OneWay}" />
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
