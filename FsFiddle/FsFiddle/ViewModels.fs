@@ -18,16 +18,6 @@ type ShellViewModel() =
 
     member self.Captures = captures
 
-//    do captures.Add(
-//        { Url = "hallo"
-//          Request =
-//            { Header = ["asdf", "asdf"; "foo", "bar"] |> Map.ofList
-//              Body = lazy("asdf") }
-//          Response =
-//            { Code = 200;
-//              Header = [("asdf", "asdf2")] |> Map.ofList
-//              Body = lazy("asdfasfd") } })
-
     member self.SelectedCapture
         with get() = self.selectedCapture
         and set(v) =
@@ -37,14 +27,8 @@ type ShellViewModel() =
     member self.StartCapturing() =
         startCapturing()
 
-//    member self.CanStartCapturing() =
-//        not (isCapturing())
-
     member self.StopCapturing() =
         stopCapturing()
-
-//    member self.CanStopCapturing() =
-//        isCapturing()
 
     override self.OnDeactivate(close) =
         if close then stopCapturing()
