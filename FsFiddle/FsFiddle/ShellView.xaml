@@ -16,26 +16,17 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <metro:ToggleSwitch Margin="5">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Checked">
-                    <cal:ActionMessage MethodName="StartCapturing" />
-                </i:EventTrigger>
-                <i:EventTrigger EventName="Unchecked">
-                    <cal:ActionMessage MethodName="StopCapturing" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </metro:ToggleSwitch>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <DataGrid AutoGenerateColumns="False"
+                      Margin="0,0,2,0"
                       ItemsSource="{Binding Captures}"
                       SelectedItem="{Binding SelectedCapture}">
                 <DataGrid.Columns>
@@ -56,22 +47,26 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-                           Text="{Binding Url}" />
+                <TextBox Grid.Row="0"
+                         Margin="2,0,0,0"
+                         IsReadOnly="True"
+                         Text="{Binding Url, Mode=OneWay}" />
                 <Separator Grid.Row="1" />
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2"
+                      Margin="2,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0"
-                               Text="{Binding Request.Header, Converter={StaticResource MapConverter}}">
-                        <TextBlock.ToolTip>
+                    <TextBox Grid.Row="0"
+                             IsReadOnly="True"
+                             Text="{Binding Request.Header, Converter={StaticResource MapConverter}, Mode=OneWay}">
+                        <TextBox.ToolTip>
                             <ToolTip>
                                 <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
                             </ToolTip>
-                        </TextBlock.ToolTip>
-                    </TextBlock>
+                        </TextBox.ToolTip>
+                    </TextBox>
                     <TextBox Grid.Row="1"
                              ScrollViewer.CanContentScroll="True"
                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -84,7 +79,8 @@
                               HorizontalAlignment="Stretch"
                               ResizeBehavior="PreviousAndNext"
                               Height="3" />
-                <Grid Grid.Row="4">
+                <Grid Grid.Row="4"
+                      Margin="2,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
@@ -95,15 +91,17 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0"
-                                   Text="{Binding Response.Code, StringFormat='\{0\} | '}" />
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding Response.Header, Converter={StaticResource MapConverter}}">
-                            <TextBlock.ToolTip>
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Response.Code, StringFormat='\{0\} '}" />
+                        <TextBox Grid.Column="1"
+                                 IsReadOnly="True"
+                                 Text="{Binding Response.Header, Converter={StaticResource MapConverter}, Mode=OneWay}">
+                            <TextBox.ToolTip>
                                 <ToolTip>
                                     <TextBlock Text="{Binding Request.Header, Converter={StaticResource MapConverter2}}" />
                                 </ToolTip>
-                            </TextBlock.ToolTip>
-                    </TextBlock>
+                            </TextBox.ToolTip>
+                        </TextBox>
                     </Grid>
                     <TextBox Grid.Row="1"
                              ScrollViewer.CanContentScroll="True"
@@ -114,5 +112,16 @@
                 </Grid>
             </Grid>
         </Grid>
+        <metro:ToggleSwitch Grid.Row="1"
+                            Margin="5">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <cal:ActionMessage MethodName="StartCapturing" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <cal:ActionMessage MethodName="StopCapturing" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </metro:ToggleSwitch>
     </Grid>
 </UserControl>

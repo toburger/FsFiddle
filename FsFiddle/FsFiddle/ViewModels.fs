@@ -21,11 +21,12 @@ type ShellViewModel() =
 //    do captures.Add(
 //        { Url = "hallo"
 //          Request =
-//            { Request.Header = [("asdf", "asdf")] |> Map.ofList
-//              Request.Body = lazy("asdf") }
+//            { Header = ["asdf", "asdf"; "foo", "bar"] |> Map.ofList
+//              Body = lazy("asdf") }
 //          Response =
-//            { Response.Header = [("asdf", "asdf2")] |> Map.ofList
-//              Response.Body = lazy("asdfasfd") } })
+//            { Code = 200;
+//              Header = [("asdf", "asdf2")] |> Map.ofList
+//              Body = lazy("asdfasfd") } })
 
     member self.SelectedCapture
         with get() = self.selectedCapture

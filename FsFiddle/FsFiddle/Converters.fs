@@ -8,8 +8,8 @@ type MapConverter() =
             match value with
             | :? Map<string, string> as map ->
                 map
-                |> Seq.map (fun (KeyValue(k, v)) -> sprintf "%s: %s" k v)
-                |> String.concat "; "
+                |> Seq.map (fun (KeyValue(k, v)) -> sprintf "{%s:%s}" k v)
+                |> String.concat ";"
                 |> box
             | _ -> null
         
