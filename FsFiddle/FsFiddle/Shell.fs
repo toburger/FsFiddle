@@ -62,6 +62,13 @@ type AppBootstrapper() as self =
 
     override self.OnStartup(sender, e) =
         self.DisplayRootViewFor<IShell>()
+        
+    override self.OnExit(sender, e) =
+        Fiddler.stopCapturing()
+
+    override self.OnUnhandledException(sender, e) =
+        Fiddler.stopCapturing()
+        base.OnUnhandledException(sender, e)
 
     override self.Configure() =
         self.container <-
@@ -85,7 +92,7 @@ type AppBootstrapper() as self =
                        | s -> s
 
         let exports = self.container.GetExportedValues contract
-
+        
         if exports |> Seq.isEmpty then
             failwithf "Could not locate any instances of contract %s." contract
         exports |> Seq.head
@@ -97,6 +104,4 @@ type AppBootstrapper() as self =
     override self.SelectAssemblies() =
         Seq.singleton (Assembly.GetExecutingAssembly())
 
-    override self.OnUnhandledException(sender, e) =
-        base.OnUnhandledException(sender, e)
 

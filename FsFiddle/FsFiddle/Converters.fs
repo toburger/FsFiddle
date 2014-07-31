@@ -3,6 +3,8 @@
 open Models
 open System.Windows.Data
 open System.Windows
+open System.IO
+open System.Windows.Media.Imaging
 
 type MapConverter() =
     interface IValueConverter with

@@ -30,7 +30,4 @@ type ShellViewModel() =
     member self.StopCapturing() =
         stopCapturing()
 
-    override self.OnDeactivate(close) =
-        if close then stopCapturing()
-
     interface IShell

@@ -38,7 +38,7 @@ let afterSessionComplete (session: Session) =
             match session.oResponse.MIMEType with
             | IsImage -> Image (lazy session.responseBodyBytes)
             | IsVideo -> Video (lazy session.responseBodyBytes)
-            | IsText -> (Text (lazy session.GetResponseBodyAsString()))
+            | IsText -> Text (lazy session.GetResponseBodyAsString())
         { Url = url
           Request = { Header = requestHeaders
                       Body = requestBody }
