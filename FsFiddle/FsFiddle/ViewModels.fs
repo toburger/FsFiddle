@@ -15,7 +15,7 @@ type ShellViewModel() =
     [<DefaultValue>] val mutable selectedCapture: Capture
     
     do Fiddler.captures.Publish |> Observable.add captures.Add
-
+    
     member self.Captures = captures
 
     member self.SelectedCapture

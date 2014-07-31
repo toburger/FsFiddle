@@ -38,9 +38,10 @@ type MetroWindowManager() =
         | _ ->
             let window = MetroWindow(Content = view,
                                      SizeToContent = SizeToContent.Manual,
-                                     MinHeight = 150.,
-                                     Width = 680.,
-                                     Height = 500.)
+                                     MinHeight = 350.,
+                                     MinWidth = 300.,
+                                     Width = 1000.,
+                                     Height = 700.)
             resources |> Seq.iter window.Resources.MergedDictionaries.Add
             window.SetValue(View.IsGeneratedProperty, true)
             match self.InferOwnerOf window with
