@@ -9,7 +9,7 @@ type MapConverter() =
             | :? Map<string, string> as map ->
                 map
                 |> Seq.map (fun (KeyValue(k, v)) -> sprintf "%s: %s" k v)
-                |> String.concat "\n"
+                |> String.concat "\r\n"
                 |> box
             | _ -> null
         
