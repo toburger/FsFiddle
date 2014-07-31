@@ -5,6 +5,7 @@
              xmlns:conv="clr-namespace:Converters;assembly=FsFiddle"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignWidth="400"
              d:DesignHeight="400">
@@ -18,24 +19,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Button Style="{DynamicResource SquareButtonStyle}"
-                    Content="Start capturing">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <cal:ActionMessage MethodName="StartCapturing" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-            <Button Style="{DynamicResource SquareButtonStyle}"
-                    Content="Stop capturing">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <cal:ActionMessage MethodName="StopCapturing" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Button>
-        </StackPanel>
+        <metro:ToggleSwitch Margin="5">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Checked">
+                    <cal:ActionMessage MethodName="StartCapturing" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Unchecked">
+                    <cal:ActionMessage MethodName="StopCapturing" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </metro:ToggleSwitch>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
