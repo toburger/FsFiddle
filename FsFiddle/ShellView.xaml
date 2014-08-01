@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:localcal="clr-namespace:Triggers;assembly=FsFiddle"
              mc:Ignorable="d"
              d:DesignWidth="400"
              d:DesignHeight="400">
@@ -15,6 +16,15 @@
         <conv:LazyBinaryConverter x:Key="LazyBinaryConverter" />
         <conv:VisibiltyConverter x:Key="VisibilityConverter" />
     </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <localcal:InputBindingTrigger>
+            <localcal:InputBindingTrigger.InputBinding>
+                <KeyBinding Modifiers="Control"
+                            Key="X" />
+            </localcal:InputBindingTrigger.InputBinding>
+            <cal:ActionMessage MethodName="RemoveAllCaptures" />
+        </localcal:InputBindingTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

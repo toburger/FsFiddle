@@ -55,6 +55,7 @@
     <Compile Include="Fiddler.fs" />
     <Compile Include="Converters.fs" />
     <Compile Include="Shell.fs" />
+    <Compile Include="Triggers.fs" />
     <Compile Include="Caliburn.Micro.fs" />
     <Compile Include="ViewModels.fs" />
     <Compile Include="Views.fs" />
@@ -85,6 +86,7 @@
       <HintPath>..\packages\FiddlerCore.4.4.8.4\lib\net40\FiddlerCore4.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FSharp.Data.TypeProviders" />
     <Reference Include="FSharp.PowerPack">
       <HintPath>..\packages\FSPowerPack.Core.Community.3.0.0\Lib\Net40\FSharp.PowerPack.dll</HintPath>
       <Private>True</Private>
@@ -112,6 +114,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Interactivity">

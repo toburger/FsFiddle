@@ -30,4 +30,7 @@ type ShellViewModel() =
     member self.StopCapturing() =
         stopCapturing()
 
+    member self.RemoveAllCaptures() =
+        captures.Clear()
+
     interface IShell
