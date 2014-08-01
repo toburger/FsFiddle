@@ -24,6 +24,7 @@ type LazyTextConverter() =
     interface IValueConverter with
         member x.Convert(value: obj, targetType: System.Type, parameter: obj, culture: System.Globalization.CultureInfo): obj = 
             match value with
+            | :? Lazy<string> as s -> upcast s.Force()
             | :? ResponseBody as body ->
                 match body with
                 | Text (Lazy(text)) ->
