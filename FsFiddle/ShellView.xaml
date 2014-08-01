@@ -25,7 +25,7 @@
             <cal:ActionMessage MethodName="RemoveAllCaptures" />
         </localcal:InputBindingTrigger>
     </i:Interaction.Triggers>
-    <Grid>
+    <Grid Margin="0,3,3,3">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
