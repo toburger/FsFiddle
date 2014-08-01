@@ -144,7 +144,6 @@
                                   HorizontalAlignment="Stretch"
                                   ResizeBehavior="PreviousAndNext"
                                   Height="3" />
-
                     <Grid Grid.Row="2">
                         <TextBox IsReadOnly="True"
                                  Visibility="{Binding Response.Body.IsText, Converter={StaticResource VisibilityConverter}}"

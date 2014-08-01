@@ -38,6 +38,8 @@ type MetroWindowManager() =
         | _ ->
             let window = MetroWindow(Content = view,
                                      SizeToContent = SizeToContent.Manual,
+                                     ShowIconOnTitleBar = true,
+                                     Icon = Resources.IconResource.FsFiddle.ImageSource,
                                      MinHeight = 350.,
                                      MinWidth = 300.,
                                      Width = 1000.,

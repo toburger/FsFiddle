@@ -54,6 +54,7 @@
     <Compile Include="Models.fs" />
     <Compile Include="Fiddler.fs" />
     <Compile Include="Converters.fs" />
+    <Compile Include="Resources.fs" />
     <Compile Include="Shell.fs" />
     <Compile Include="Triggers.fs" />
     <Compile Include="Caliburn.Micro.fs" />
@@ -63,6 +64,7 @@
     <Resource Include="ApplicationResources.xaml" />
     <Resource Include="ShellView.xaml" />
     <Content Include="packages.config" />
+    <EmbeddedResource Include="FsFiddle.ico" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
