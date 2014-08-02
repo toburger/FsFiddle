@@ -19,15 +19,17 @@ let (|IsImage|IsVideo|IsText|) (s: string) =
     else IsText
 
 let afterSessionComplete (session: Session) =
+    let settings = FsFiddler.Settings.Default
     if session = null || session.oRequest = null || session.oRequest.headers = null then ()
     // ignore CONNECT
     elif session.RequestMethod = "CONNECT" then ()
-    // ignore SSL
-    elif session.isHTTPS then ()
     // ignore missing MIME type
-    elif String.IsNullOrEmpty(session.oResponse.MIMEType) then ()
+    elif not settings.IgnoreMissingMimeType && String.IsNullOrEmpty(session.oResponse.MIMEType) then ()
+    // ignore SSL
+    elif not settings.IgnoreSSL && session.isHTTPS then ()
     // ignore redirections
-    elif session.responseCode >= 300 && session.responseCode < 400 then ()
+    elif not settings.IgnoreRedirects &&
+       session.responseCode >= 300 && session.responseCode < 400 then ()
     else
         let url = session.fullUrl
         let requestHeaders = session.oRequest.headers |> toMap

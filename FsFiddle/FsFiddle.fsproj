@@ -51,6 +51,7 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="Settings.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="Fiddler.fs" />
     <Compile Include="Converters.fs" />
