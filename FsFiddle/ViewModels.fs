@@ -34,3 +34,20 @@ type ShellViewModel() =
         captures.Clear()
 
     interface IShell
+
+type SettingsViewModel() =
+    inherit Screen()
+
+    let mutable settings = FsFiddler.Settings.Default
+
+    member self.IgnoreSSL
+        with get() = settings.IgnoreSSL
+        and set(v) = settings <- { settings with IgnoreSSL = v }
+
+    member self.IgnoreRedirects
+        with get() = settings.IgnoreRedirects
+        and set(v) = settings <- { settings with IgnoreRedirects = v }
+        
+    member self.IgnoreMissingMimeType
+        with get() = settings.IgnoreMissingMimeType
+        and set(v) = settings <- { settings with IgnoreMissingMimeType = v }
