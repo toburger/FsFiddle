@@ -1,0 +1,14 @@
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.nuget.org/api/v2
+  specs:
+    Caliburn.Micro (2.0.1)
+      Caliburn.Micro.Core (2.0.1)
+    Caliburn.Micro.Core (2.0.1)
+    FAKE (4.12.0)
+    FiddlerCore (4.4.8.4)
+    FSharpx.TypeProviders.Xaml (1.8.41)
+    FSPowerPack.Core.Community (3.0.0)
+    FSPowerPack.Linq.Community (3.0.0)
+      FSPowerPack.Core.Community
+    MahApps.Metro (1.0.0)

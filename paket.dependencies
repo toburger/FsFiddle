@@ -1,0 +1,10 @@
+source https://nuget.org/api/v2
+framework >= net45
+nuget Caliburn.Micro 2.0.1
+nuget Caliburn.Micro.Core 2.0.1
+nuget fake
+nuget FiddlerCore 4.4.8.4
+nuget FSharpx.TypeProviders.Xaml 1.8.41
+nuget FSPowerPack.Core.Community 3.0.0.0
+nuget FSPowerPack.Linq.Community 3.0.0.0
+nuget MahApps.Metro 1.0.0.0
